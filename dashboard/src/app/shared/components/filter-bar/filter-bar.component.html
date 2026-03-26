@@ -1,0 +1,31 @@
+<div class="filter-bar p-3 rounded mb-4">
+  <div class="row g-2">
+    <div class="col-md-2">
+      <select class="form-select" [(ngModel)]="categoriaId" (change)="onFilterChange()">
+        <option value="">Categoría</option>
+        <option *ngFor="let c of categories" [value]="c.id">{{ c.nombre }}</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+      <select class="form-select" [(ngModel)]="prioridad" (change)="onFilterChange()">
+        <option *ngFor="let p of prioridadOptions" [value]="p.value">{{ p.label }}</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+      <input type="date" class="form-control" [(ngModel)]="fechaDesde" (change)="onFilterChange()">
+    </div>
+    <div class="col-md-2">
+      <input type="date" class="form-control" [(ngModel)]="fechaHasta" (change)="onFilterChange()">
+    </div>
+    <div class="col-md-2">
+      <select class="form-select" [(ngModel)]="completada" (change)="onFilterChange()">
+        <option [ngValue]="null">Estado</option>
+        <option [ngValue]="true">Completadas</option>
+        <option [ngValue]="false">Pendientes</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+      <button class="btn btn-outline-secondary w-100" (click)="resetFilters()">Limpiar</button>
+    </div>
+  </div>
+</div>
