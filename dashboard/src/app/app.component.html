@@ -1,0 +1,21 @@
+<app-toast></app-toast>
+<div class="d-flex" *ngIf="isLoggedIn()">
+  <nav class="sidebar p-3" style="width: 250px; min-height: 100vh;">
+    <h4 class="mb-4">🔨 Organizathor</h4>
+    <ul class="nav flex-column">
+      <li class="nav-item mb-2"><a class="nav-link" routerLink="/dashboard" routerLinkActive="bg-primary rounded"><i class="bi bi-speedometer2"></i> Dashboard</a></li>
+      <li class="nav-item mb-2"><a class="nav-link" routerLink="/tasks" routerLinkActive="bg-primary rounded"><i class="bi bi-check2-square"></i> Tareas</a></li>
+      <li class="nav-item mb-2"><a class="nav-link" routerLink="/notes" routerLinkActive="bg-primary rounded"><i class="bi bi-journal-text"></i> Notas</a></li>
+    </ul>
+    <hr class="my-4">
+    <div class="mb-3">
+      <button class="btn theme-toggle-btn w-100 d-flex align-items-center justify-content-center gap-2" (click)="toggleTheme()">
+        <i class="bi" [class.bi-moon-fill]="!themeService.isDarkMode()" [class.bi-sun-fill]="themeService.isDarkMode()"></i>
+        <span>{{ themeService.isDarkMode() ? 'Modo Claro' : 'Modo Oscuro' }}</span>
+      </button>
+    </div>
+    <button class="btn btn-outline-light w-100" (click)="logout()"><i class="bi bi-box-arrow-right"></i> Cerrar Sesión</button>
+  </nav>
+  <div class="flex-grow-1 content-wrapper"><main class="p-4"><router-outlet></router-outlet></main></div>
+</div>
+<router-outlet *ngIf="!isLoggedIn()"></router-outlet>
