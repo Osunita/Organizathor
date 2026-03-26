@@ -1,0 +1,28 @@
+<div class="container-fluid mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2><i class="bi bi-check2-square me-2"></i>Tareas</h2>
+    <button class="btn btn-primary" (click)="openCreateModal()"><i class="bi bi-plus-circle me-2"></i>Nueva Tarea</button>
+  </div>
+  <app-filter-bar (filterChange)="onFilterChange($event)"></app-filter-bar>
+  <div *ngIf="loading()" class="text-center py-5"><div class="spinner-border text-primary"></div></div>
+  <div *ngIf="!loading() && tasks().length === 0" class="alert alert-info">No hay tareas. ¡Crea tu primera tarea!</div>
+  <div *ngIf="!loading() && tasks().length > 0" class="card shadow-sm">
+    <table class="table table-striped table-hover mb-0">
+      <thead class="table-custom-dark">
+        <tr><th style="width:5%"></th><th style="width:20%">Título</th><th style="width:12%">Prioridad</th><th style="width:13%">Categoría</th><th style="width:15%">Vencimiento</th><th style="width:10%">Estado</th><th style="width:20%">Acciones</th></tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let task of tasks()" [class.table-success]="task.completada">
+          <td cdkDragHandle class="drag-handle"><i class="bi bi-grip-vertical text-muted"></i></td>
+          <td><strong [class.text-decoration-line-through]="task.completada">{{ task.titulo }}</strong></td>
+          <td><span class="badge" [class.bg-secondary]="getPriorityColor(task.prioridad) === 'secondary'" [class.bg-warning]="getPriorityColor(task.prioridad) === 'warning'" [class.bg-danger]="getPriorityColor(task.prioridad) === 'danger'">{{ getPriorityLabel(task.prioridad) }}</span></td>
+          <td><span *ngIf="task.categoriaNombre" class="badge bg-secondary">{{ task.categoriaNombre }}</span><span *ngIf="!task.categoriaNombre" class="text-muted">-</span></td>
+          <td [class.text-danger]="isOverdue(task.fechaVencimiento)">{{ formatDate(task.fechaVencimiento) }}</td>
+          <td><button class="btn btn-sm" [class.btn-success]="!task.completada" [class.btn-outline-secondary]="task.completada" (click)="toggleTaskCompletion(task)"><i class="bi" [class.bi-check-circle]="task.completada" [class.bi-circle]="!task.completada"></i></button></td>
+          <td><button class="btn btn-sm btn-outline-primary me-1" (click)="openEditModal(task)"><i class="bi bi-pencil"></i></button><button class="btn btn-sm btn-outline-danger" (click)="deleteTask(task)"><i class="bi bi-trash"></i></button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <app-task-form *ngIf="showModal()" [task]="editingTask" (close)="onModalClose()"></app-task-form>
+</div>
