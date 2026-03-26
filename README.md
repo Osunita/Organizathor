@@ -43,7 +43,3 @@ dashboard/
     ├── notes/         # Gestión de notas
     └── shared/        # Componentes compartidos
 ```
-
-## 📝 Licencia
-
-MIT
