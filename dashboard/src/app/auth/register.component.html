@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-4">
+      <div class="card login-card">
+        <div class="card-header text-center"><h4 class="mb-0">🔨 Crear Cuenta</h4></div>
+        <div class="card-body">
+          <form (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" [(ngModel)]="email" name="email" required>
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Contraseña</label>
+              <input type="password" class="form-control" id="password" [(ngModel)]="password" name="password" required>
+            </div>
+            <div class="mb-3">
+              <label for="confirmPassword" class="form-label">Confirmar Contraseña</label>
+              <input type="password" class="form-control" id="confirmPassword" [(ngModel)]="confirmPassword" name="confirmPassword" required>
+            </div>
+            <div *ngIf="errorMessage()" class="alert alert-danger">{{ errorMessage() }}</div>
+            <div *ngIf="successMessage()" class="alert alert-success">{{ successMessage() }}</div>
+            <button type="submit" class="btn btn-primary w-100" [disabled]="loading()">Registrarse</button>
+          </form>
+          <hr class="my-3">
+          <p class="text-center mb-0">¿Ya tienes cuenta? <a routerLink="/auth/login">Iniciar sesión</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
