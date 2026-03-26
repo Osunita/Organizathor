@@ -1,0 +1,31 @@
+<div class="modal show d-block" tabindex="-1" style="background-color: rgba(0,0,0,0.5);">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header" [style.background-color]="form.get('color')?.value || '#0d6efd'" [style.color]="'#fff'">
+        <h5 class="modal-title">{{ note ? 'Editar Nota' : 'Nueva Nota' }}</h5>
+        <button type="button" class="btn-close btn-close-white" (click)="onCancel()"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label for="titulo" class="form-label">Título *</label>
+            <input type="text" class="form-control" id="titulo" formControlName="titulo">
+          </div>
+          <div class="mb-3">
+            <label for="contenido" class="form-label">Contenido</label>
+            <textarea class="form-control" id="contenido" formControlName="contenido" rows="4"></textarea>
+            <small class="text-muted">La categoría se asignará automáticamente.</small>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Color</label>
+            <input type="color" class="form-control form-control-color" formControlName="color">
+          </div>
+          <div class="modal-footer px-0">
+            <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancelar</button>
+            <button type="submit" class="btn btn-primary" [disabled]="form.invalid">{{ note ? 'Actualizar' : 'Crear' }}</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

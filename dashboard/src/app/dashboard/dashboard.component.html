@@ -1,0 +1,11 @@
+<div class="container-fluid mt-4">
+  <h2><i class="bi bi-speedometer2 me-2"></i>Dashboard</h2>
+  <div *ngIf="loading()" class="text-center py-5"><div class="spinner-border text-primary"></div></div>
+  <div *ngIf="hasError()" class="alert alert-danger">Error al cargar datos. <button class="btn btn-sm btn-outline-danger" (click)="refresh()">Reintentar</button></div>
+  <div *ngIf="!loading() && !hasError()" class="row mt-4">
+    <div class="col-md-3 mb-3"><app-kpi-card title="Total Tareas" [value]="totalTasks()" icon="bi-list-task" color="primary"></app-kpi-card></div>
+    <div class="col-md-3 mb-3"><app-kpi-card title="Completadas Hoy" [value]="completedToday()" icon="bi-check-circle" color="success"></app-kpi-card></div>
+    <div class="col-md-3 mb-3"><app-kpi-card title="Pendientes" [value]="totalTasks() - completedToday()" icon="bi-clock" color="warning"></app-kpi-card></div>
+    <div class="col-md-3 mb-3"><app-kpi-card title="Notas" [value]="notes().length" icon="bi-sticky" color="info"></app-kpi-card></div>
+  </div>
+</div>
