@@ -1,0 +1,33 @@
+/* Dark/Light Theme Variables */
+:root {
+  --bg-primary: #f8f9fa;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #e9ecef;
+  --text-primary: #212529;
+  --text-secondary: #6c757d;
+  --border-color: #dee2e6;
+  --card-bg: #ffffff;
+  --sidebar-bg: #212529;
+  --sidebar-text: #ffffff;
+  --hover-bg: rgba(255, 255, 255, 0.1);
+  --table-striped-bg: rgba(0, 0, 0, 0.02);
+  --accent-color: #0d6efd;
+}
+
+[data-theme="dark"] {
+  --bg-primary: #0a0a15;
+  --bg-secondary: #121220;
+  --bg-tertiary: #1e1e30;
+  --text-primary: #e8e8ed;
+  --text-secondary: #a0a0b0;
+  --border-color: #2a2a40;
+  --card-bg: #1a1a25;
+  --sidebar-bg: #0a0a15;
+  --sidebar-text: #e8e8ed;
+  --hover-bg: rgba(255, 255, 255, 0.08);
+  --table-striped-bg: rgba(255, 255, 255, 0.02);
+  --accent-color: #60a5fa;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: var(--bg-primary); color: var(--text-primary); }
